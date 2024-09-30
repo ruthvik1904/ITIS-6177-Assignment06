@@ -96,6 +96,41 @@ app.get('/api/students', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/foods:
+ *   get:
+ *     summary: Retrieve all food items
+ *     description: Get a list of all food items.
+ *     responses:
+ *       200:
+ *         description: A list of food items.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   ITEM_ID:
+ *                     type: string
+ *                     description: The unique ID of the food item.
+ *                     example: F12345
+ *                   ITEM_NAME:
+ *                     type: string
+ *                     description: The name of the food item.
+ *                     example: Pizza
+ *                   ITEM_UNIT:
+ *                     type: string
+ *                     description: The unit of measurement for the food item.
+ *                     example: pcs
+ *                   COMPANY_ID:
+ *                     type: string
+ *                     description: The ID of the company supplying the food item.
+ *                     example: C12345
+ *       500:
+ *         description: Server error.
+ */
 app.get('/api/foods', async (req, res) => {
     try {
       const results = await executeQuery('SELECT * FROM foods');
@@ -105,6 +140,41 @@ app.get('/api/foods', async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /api/foods:
+ *   get:
+ *     summary: Retrieve all food items
+ *     description: Get a list of all food items.
+ *     responses:
+ *       200:
+ *         description: A list of food items.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   ITEM_ID:
+ *                     type: string
+ *                     description: The unique ID of the food item.
+ *                     example: F12345
+ *                   ITEM_NAME:
+ *                     type: string
+ *                     description: The name of the food item.
+ *                     example: Pizza
+ *                   ITEM_UNIT:
+ *                     type: string
+ *                     description: The unit of measurement for the food item.
+ *                     example: pcs
+ *                   COMPANY_ID:
+ *                     type: string
+ *                     description: The ID of the company supplying the food item.
+ *                     example: C12345
+ *       500:
+ *         description: Server error.
+ */
 app.get('/api/orders', async (req, res) => {
     try {
       const results = await executeQuery('SELECT * FROM orders');
