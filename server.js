@@ -2,6 +2,7 @@ const express = require('express');
 const mariadb = require('mariadb');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const axios = require('axios');
 const { body, param, validationResult } = require('express-validator');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -492,6 +493,25 @@ app.delete(
     }
   }
 );
+
+app.get('/say', async (req, res) => {
+  const keyword = req.query.keyword || '';
+
+  try {
+      const lambdaFunctionUrl = 'https://78lfobcy0l.execute-api.us-east-2.amazonaws.com/dev/say';
+
+      const response = await axios.get(lambdaFunctionUrl, {
+          params: {
+              keyword: keyword,
+          },
+      });
+
+      res.json(response.data);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Something went wrong' });
+  }
+});
 
 
 const PORT = 3000;
